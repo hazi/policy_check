@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module SimplePolicy
-  # error model
+  # Determines the error
   class Error
     def initialize(model, message, &block)
       @model = model

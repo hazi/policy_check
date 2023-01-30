@@ -3,7 +3,7 @@
 require "simple_policy/error"
 
 module SimplePolicy
-  # error list builder
+  # Create a summary error model and summarize the decision
   class ErrorList
     def initialize(model, &block)
       @model = model
