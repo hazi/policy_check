@@ -1,6 +1,6 @@
 # SimplePolicy
 
-
+SimplePolicy provides a DSL for policy definitions and allows you to get reasons for policy violations.
 
 ## Installation
 
@@ -52,7 +52,7 @@ post.publishable? #=> false
 
 ```ruby
 class PostPublishablePolicy
-  include SimplePolicy::Policy #-> only add `.error`, `#valid?`, `#error_messages` method
+  extend SimplePolicy #-> only add `.policy`
 
   def initialize(post, user)
     @post = post
@@ -64,7 +64,7 @@ class PostPublishablePolicy
     !user.admin?
   end
 
-  policy do
+  policy do #-> only create `#valid?` and `#error_messages` method
     error "user is not admin", &:not_admin?
     error("status is not `draft`") { post.status != :draft }
     error("body is empty") { post.body.empty? }
@@ -75,6 +75,7 @@ post = Post.find(1)
 user = current_user
 PostPublishablePolicy.new(post, user).error_messages #=> ["body is empty", "write is not admin"]
 PostPublishablePolicy.new(post, user).valid? #=> false
+PostPublishablePolicy.new(post, user).invalid? #=> true
 ```
 
 ## License

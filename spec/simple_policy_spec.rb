@@ -1,22 +1,22 @@
 # frozen_string_literal: true
 
 RSpec.describe SimplePolicy do
-  let(:klass) do
-    klass = Struct.new(:value)
-    klass.class_exec { extend SimplePolicy } # rubocop:disable RSpec/DescribedClass
+  describe "inline policy" do
+    let(:klass) do
+      klass = Struct.new(:value)
+      klass.class_exec { extend SimplePolicy } # rubocop:disable RSpec/DescribedClass
 
-    klass
-  end
+      klass
+    end
 
-  let(:instance) { klass.new }
-
-  context "when defined in a block" do
-    before do
+    let(:instance) do
       klass.class_exec do
         policy :my_policy do
           error("value is `1`") { value == 1 }
         end
       end
+
+      klass.new
     end
 
     context "when an error occurs" do
@@ -44,40 +44,57 @@ RSpec.describe SimplePolicy do
     end
   end
 
-  context "when defined in a `&:`" do
-    before do
-      klass.class_exec do
-        def value_is_one?
-          value == 1
-        end
+  describe "Policy class" do
+    let(:klass) do
+      klass = Class.new
+      klass.class_exec { extend SimplePolicy } # rubocop:disable RSpec/DescribedClass
 
-        policy :my_policy do
-          error "value is `1`", &:value_is_one?
+      klass
+    end
+
+    let(:instance) do
+      klass.class_exec do
+        attr_accessor :value
+
+        policy do
+          error("value is `1`") { value == 1 }
         end
       end
+
+      klass.new
     end
 
     context "when an error occurs" do
       it do
         instance.value = 1
-        expect(instance).not_to be_my_policy
+        expect(instance).not_to be_valid
       end
 
       it do
         instance.value = 1
-        expect(instance).to have_attributes(my_policy_errors: ["value is `1`"])
+        expect(instance).to be_invalid
+      end
+
+      it do
+        instance.value = 1
+        expect(instance).to have_attributes(error_messages: ["value is `1`"])
       end
     end
 
     context "when a no error occurs" do
       it do
         instance.value = 2
-        expect(instance).to be_my_policy
+        expect(instance).to be_valid
       end
 
       it do
         instance.value = 2
-        expect(instance).to have_attributes(my_policy_errors: be_empty)
+        expect(instance).not_to be_invalid
+      end
+
+      it do
+        instance.value = 2
+        expect(instance).to have_attributes(error_messages: be_empty)
       end
     end
   end

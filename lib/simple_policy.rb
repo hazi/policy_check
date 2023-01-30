@@ -31,8 +31,8 @@ require "simple_policy/module_builder"
 #   post.publishable_errors #=> ['body is empty']
 #   post.publishable? #=> false
 module SimplePolicy
-  def policy(name, &block)
-    name = name.to_sym
+  def policy(name = nil, &block)
+    name = name&.to_sym
     class_exec { include SimplePolicy::ModuleBuilder.new(name, &block) }
   end
 end
