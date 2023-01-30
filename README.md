@@ -1,3 +1,5 @@
+[![test](https://github.com/hazi/simple_policy/actions/workflows/test.yml/badge.svg)](https://github.com/hazi/simple_policy/actions/workflows/test.yml) [![lint](https://github.com/hazi/simple_policy/actions/workflows/lint.yml/badge.svg)](https://github.com/hazi/simple_policy/actions/workflows/lint.yml)
+
 # SimplePolicy
 
 SimplePolicy provides a DSL for policy definitions and allows you to get reasons for policy violations.
