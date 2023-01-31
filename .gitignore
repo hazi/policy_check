@@ -8,6 +8,7 @@
 /tmp/
 /vendor
 /.ruby-version
+/policy_check-*.gem
 
 # rspec failure tracking
 .rspec_status
