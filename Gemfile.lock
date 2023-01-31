@@ -56,12 +56,12 @@ PLATFORMS
 
 DEPENDENCIES
   bundler
+  policy_check!
   rake
   rspec
   rubocop
   rubocop-rake
   rubocop-rspec
-  policy_check!
 
 BUNDLED WITH
    2.4.5
