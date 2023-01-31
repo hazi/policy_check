@@ -1,15 +1,15 @@
-[![test](https://github.com/hazi/simple_policy/actions/workflows/test.yml/badge.svg)](https://github.com/hazi/simple_policy/actions/workflows/test.yml) [![lint](https://github.com/hazi/simple_policy/actions/workflows/lint.yml/badge.svg)](https://github.com/hazi/simple_policy/actions/workflows/lint.yml)
+[![test](https://github.com/hazi/policy_check/actions/workflows/test.yml/badge.svg)](https://github.com/hazi/policy_check/actions/workflows/test.yml) [![lint](https://github.com/hazi/policy_check/actions/workflows/lint.yml/badge.svg)](https://github.com/hazi/policy_check/actions/workflows/lint.yml)
 
-# SimplePolicy
+# PolicyCheck
 
-SimplePolicy provides a DSL for policy definitions and allows you to get reasons for policy violations.
+PolicyCheck provides a DSL for policy definitions and allows you to get reasons for policy violations.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'simple_policy', github: 'hazi/simple_policy'
+gem 'policy_check', github: 'hazi/policy_check'
 ```
 
 And then execute:
@@ -23,7 +23,7 @@ And then execute:
 
 ```ruby
 class Post
-  extend SimplePolicy #-> only add `.policy` method
+  extend PolicyCheck #-> only add `.policy` method
 
   def initialize
     @status = :draft
@@ -54,7 +54,7 @@ post.publishable? #=> false
 
 ```ruby
 class PostPublishablePolicy
-  extend SimplePolicy #-> only add `.policy`
+  extend PolicyCheck #-> only add `.policy`
 
   def initialize(post, user)
     @post = post

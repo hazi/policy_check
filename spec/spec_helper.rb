@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "bundler/setup"
-require "simple_policy"
+require "policy_check"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

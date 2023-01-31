@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-RSpec.describe SimplePolicy do
+RSpec.describe PolicyCheck do
   describe "inline policy" do
     let(:klass) do
       klass = Struct.new(:value)
-      klass.class_exec { extend SimplePolicy } # rubocop:disable RSpec/DescribedClass
+      klass.class_exec { extend PolicyCheck } # rubocop:disable RSpec/DescribedClass
 
       klass
     end
@@ -47,7 +47,7 @@ RSpec.describe SimplePolicy do
   describe "Policy class" do
     let(:klass) do
       klass = Class.new
-      klass.class_exec { extend SimplePolicy } # rubocop:disable RSpec/DescribedClass
+      klass.class_exec { extend PolicyCheck } # rubocop:disable RSpec/DescribedClass
 
       klass
     end

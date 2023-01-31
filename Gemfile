@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-# Specify your gem's dependencies in simple_policy.gemspec
+# Specify your gem's dependencies in policy_check.gemspec
 gemspec
 
 group :development do

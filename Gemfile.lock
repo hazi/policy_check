@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    simple_policy (0.1.0)
+    policy_check (0.1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -61,7 +61,7 @@ DEPENDENCIES
   rubocop
   rubocop-rake
   rubocop-rspec
-  simple_policy!
+  policy_check!
 
 BUNDLED WITH
    2.4.5

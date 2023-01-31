@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require "simple_policy/error"
+require "policy_check/error"
 
-module SimplePolicy
+module PolicyCheck
   # Create a summary error model and summarize the decision
   class ErrorList
     def initialize(model, &block)
