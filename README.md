@@ -2,14 +2,14 @@
 
 # PolicyCheck
 
-PolicyCheck provides a DSL for policy definitions and allows you to get reasons for policy violations.
+DSL for policy definitions and allows get reasons for policy violations.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'policy_check', github: 'hazi/policy_check'
+gem 'policy_check'
 ```
 
 And then execute:
@@ -66,7 +66,7 @@ class PostPublishablePolicy
     !user.admin?
   end
 
-  policy do #-> only create `#valid?` and `#error_messages` method
+  policy do #-> only create `#valid?`, `#invalid?` and `#error_messages` method
     error "user is not admin", &:not_admin?
     error("status is not `draft`") { post.status != :draft }
     error("body is empty") { post.body.empty? }

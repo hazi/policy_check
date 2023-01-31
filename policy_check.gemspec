@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["HAZI"]
   spec.email         = ["yuhei.mukoyama@gmail.com"]
 
-  spec.summary       = "Create policies for models or policy class"
+  spec.summary       = "DSL for policy definitions and allows get reasons for policy violations."
   spec.homepage      = "https://github.com/hazi/policy_check"
   spec.license       = "MIT"
 
