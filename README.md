@@ -19,11 +19,19 @@ And then execute:
 
 ## Usage
 
+```ruby
+class Post
+  extend PolicyCheck #-> only add `.policy` method
+end
+```
+
+## Example
+
 ### Inline policy
 
 ```ruby
 class Post
-  extend PolicyCheck #-> only add `.policy` method
+  extend PolicyCheck
 
   def initialize
     @status = :draft
@@ -54,7 +62,7 @@ post.publishable? #=> false
 
 ```ruby
 class PostPublishablePolicy
-  extend PolicyCheck #-> only add `.policy`
+  extend PolicyCheck
 
   def initialize(post, user)
     @post = post
