@@ -3,8 +3,11 @@
 RSpec.describe PolicyCheck do
   describe "inline policy" do
     let(:klass) do
-      klass = Struct.new(:value)
-      klass.class_exec { extend PolicyCheck } # rubocop:disable RSpec/DescribedClass
+      klass = Class.new
+      klass.class_exec do
+        extend PolicyCheck # rubocop:disable RSpec/DescribedClass
+        attr_accessor :value
+      end
 
       klass
     end
@@ -17,7 +20,7 @@ RSpec.describe PolicyCheck do
           end
         end
 
-        klass.new(1)
+        klass.new.tap { _1.value = 1 }
       end
 
       it "is expected \#{name}? to be true" do
@@ -37,7 +40,7 @@ RSpec.describe PolicyCheck do
           end
         end
 
-        klass.new(0)
+        klass.new.tap { _1.value = 0 }
       end
 
       it "is expected \#{name}? not to be true" do
@@ -61,7 +64,7 @@ RSpec.describe PolicyCheck do
           end
         end
 
-        klass.new(0)
+        klass.new.tap { _1.value = 0 }
       end
 
       it "is expected \#{name}? not to be true" do
@@ -77,15 +80,16 @@ RSpec.describe PolicyCheck do
   describe "Policy class" do
     let(:klass) do
       klass = Class.new
-      klass.class_exec { extend PolicyCheck } # rubocop:disable RSpec/DescribedClass
+      klass.class_exec do
+        extend PolicyCheck # rubocop:disable RSpec/DescribedClass
+        attr_accessor :value
+      end
 
       klass
     end
 
     let(:instance) do
       klass.class_exec do
-        attr_accessor :value
-
         policy do
           error("value is not `1`") { value != 1 }
         end
@@ -97,8 +101,6 @@ RSpec.describe PolicyCheck do
     context "when error-free policies defined in block style" do
       let(:instance) do
         klass.class_exec do
-          attr_accessor :value
-
           policy do
             error("value is not `1`") { value != 1 }
           end
@@ -123,8 +125,6 @@ RSpec.describe PolicyCheck do
     context "when there is a policy with errors defined in the block style" do
       let(:instance) do
         klass.class_exec do
-          attr_accessor :value
-
           policy do
             error("value is not `1`") { value != 1 }
           end
@@ -149,8 +149,6 @@ RSpec.describe PolicyCheck do
     context "when there is a policy with errors defined in the `&:` style" do
       let(:instance) do
         klass.class_exec do
-          attr_accessor :value
-
           def is_not_one?
             value != 1
           end
