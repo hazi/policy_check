@@ -1,4 +1,4 @@
-[![test](https://github.com/hazi/policy_check/actions/workflows/test.yml/badge.svg)](https://github.com/hazi/policy_check/actions/workflows/test.yml) [![lint](https://github.com/hazi/policy_check/actions/workflows/lint.yml/badge.svg)](https://github.com/hazi/policy_check/actions/workflows/lint.yml)
+[![test](https://github.com/hazi/policy_check/actions/workflows/test.yml/badge.svg)](https://github.com/hazi/policy_check/actions/workflows/test.yml) [![lint](https://github.com/hazi/policy_check/actions/workflows/lint.yml/badge.svg)](https://github.com/hazi/policy_check/actions/workflows/lint.yml) [![Gem Version](https://badge.fury.io/rb/policy_check.svg)](https://badge.fury.io/rb/policy_check)
 
 # PolicyCheck
 
