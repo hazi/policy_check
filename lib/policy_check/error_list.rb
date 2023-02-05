@@ -3,7 +3,7 @@
 require "policy_check/error"
 
 module PolicyCheck
-  # Create a summary error model and summarize the decision
+  # A model that summarizes the errors defined in the {PolicyCheck#policy} block
   class ErrorList
     def initialize(model, &block)
       @model = model

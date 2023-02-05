@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module PolicyCheck
-  # Determines the error
+  # Model representing one error defined in the {PolicyCheck#policy} block
   class Error
     def initialize(model, message, &block)
       @model = model

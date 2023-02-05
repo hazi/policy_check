@@ -25,9 +25,9 @@ require "policy_check/module_builder"
 #     end
 #   end
 module PolicyCheck
+  # If a name is specified "#\\{name}?" and "#\\{name}_errors" method are added.
+  # if name is `nil`, add `#error_messages`, `#valid?` and `#invalid?` method
   # @param [#to_sym] name policy name, default is `nil`.
-  #   If a name is specified "#{name}?" and "#{name}_errors" method are added.
-  #   if `nil`, add `#error_messages`, `#valid?` and `#invalid?` method
   def policy(name = nil, &block)
     name = name&.to_sym
     class_exec { include PolicyCheck::ModuleBuilder.new(name, &block) }
