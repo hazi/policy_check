@@ -83,10 +83,31 @@ end
 
 post = Post.find(1)
 user = current_user
-PostPublishablePolicy.new(post, user).error_messages #=> ["body is empty", "write is not admin"]
+PostPublishablePolicy.new(post, user).error_messages #=> ["body is empty", "user is not admin"]
 PostPublishablePolicy.new(post, user).valid? #=> false
 PostPublishablePolicy.new(post, user).invalid? #=> true
 ```
+
+## Compatibility
+
+PolicyCheck officially supports the following runtime Ruby implementations:
+
+- MRI 2.7, 3.0, 3.1, 3.2
+
+## Development
+
+After checking out the repo, run `bin/setup` to install dependencies.
+Then, run `bundle exec rspec` to run the tests.
+Before committing, run `bundle exec rubocop` to perform a style check.
+You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+
+## Contribution
+
+1. Fork it ( https://github.com/hazi/policy_check/fork )
+2. Create your feature branch (git checkout -b my-new-feature)
+3. Commit your changes (git commit -am 'Add some feature')
+4. Push to the branch (git push origin my-new-feature)
+5. Create new Pull Request
 
 ## License
 
