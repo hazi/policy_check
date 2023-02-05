@@ -8,7 +8,8 @@ module PolicyCheck
     def initialize(model, &block)
       @model = model
       @block = block
-      @errors = instance_eval(&block)
+      @errors = []
+      instance_eval(&block)
     end
 
     # @return [Boolean] true if all errors are false
@@ -27,7 +28,6 @@ module PolicyCheck
 
     # called when a policy is defined
     def error(message, &block)
-      @errors ||= []
       @errors << Error.new(model, message, &block)
     end
   end
